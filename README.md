@@ -34,3 +34,6 @@ A desktop-based WPF (Windows Presentation Foundation) program, the Cybersecurity
 7. Dark Mode & UI Customization (Optional):
    Visual features including font styling, spacing, and icons are supported by the WPF GUI.
    Users can change themes using a toggle button for dark mode, if it is enabled.  The output and input boxes are designed to be easier for users to read.
+Reference list:
+-- GeeksforGeeks (2018). Introduction to C# Windows Forms Applications. [online] GeeksforGeeks. Available at: https://www.geeksforgeeks.org/c-sharp/introduction-to-c-sharp-windows-forms-applications/.
+-- Simplilearn.com. (n.d.). A One-Stop Solution for Creating a C# GUI | Simplilearn. [online] Available at: https://www.simplilearn.com/tutorials/c-sharp-tutorial/c-sharp-gui.
