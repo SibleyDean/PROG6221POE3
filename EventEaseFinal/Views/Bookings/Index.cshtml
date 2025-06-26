@@ -1,0 +1,73 @@
+﻿@model IEnumerable<EventEaseFinal.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Bookings</h2>
+
+<div class="d-flex justify-content-end mb-3">
+    <a asp-action="Create" class="btn btn-success">Create New Booking</a>
+</div>
+
+<form method="get" asp-action="Index" class="mb-4">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" name="searchString" class="form-control" placeholder="Search by venue/event" />
+        </div>
+
+        <div class="col-md-3">
+            <select name="eventTypeId" class="form-control">
+                <option value="">All Event Types</option>
+                @foreach (var et in (SelectList)ViewData["EventTypes"])
+                {
+                    <option value="@et.Value">@et.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label for="startDate">Booking Date</label>
+            <input type="date" name="startDate" class="form-control" />
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="availableOnly" value="true" id="availableOnly" />
+                <label class="form-check-label" for="availableOnly">Only available venues</label>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Filter</button>
+</form>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Booking Date</th>
+            <th>Event</th>
+            <th>Type</th>
+            <th>Venue</th>
+            <th>Availability</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BookingDate.ToString("dd-MM-yyyy")</td>
+                <td>@item.Event?.EventName</td>
+                <td>@item.Event?.EventType?.TypeName</td>
+                <td>@item.Venue?.VenueName</td>
+                <td>@(item.Venue?.IsAvailable == true ? "Available" : "Unavailable")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.BookingId" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
